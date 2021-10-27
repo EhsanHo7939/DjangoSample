@@ -24,7 +24,7 @@ def articleDetails(request, slug):
 
 
 def categoryPage(request, slug, page=1):
-    category = get_object_or_404(Category.objects.published(), slug=slug)
+    category = get_object_or_404(Category.objects.active(), slug=slug)
     article_list = category.articles.published()
     paginator = Paginator(article_list , 2)
     page_obj = paginator.get_page(page)

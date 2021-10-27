@@ -41,7 +41,7 @@
                             <p class="card-text">{{article.description|truncatewords:20}}</p>
                             <!-- Post categories-->
                             <div>
-                                {% for category in article.category_published.all %}
+                                {% for category in article.category.active %}
                                 <a class="text-decoration-none" href="{% url 'blog:categoryPage' category.slug %}">#{{category.title}}</a>
                                 {% endfor %}
                             </div>

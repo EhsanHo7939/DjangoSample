@@ -17,7 +17,7 @@ class ArticleManager(models.Manager):
 
 
 class CategoryManager(models.Manager):
-    def published(self):
+    def active(self):
         return self.filter(status=True)
 
 
@@ -70,9 +70,6 @@ class Article(models.Model):
     def jDateTime(self):
         return jalali_datetime(self.publish)
     jDateTime.short_description = "Date & Time"
-    
-    def category_published(self):
-        return self.category.published()
 
     def thumbnail_tag(self):
         return format_html("<img width=100 height=70 style='border-radius: 5px;' src='{0}'".format(self.thumbnail.url))
