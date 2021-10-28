@@ -18,7 +18,7 @@
                     <div class="text-muted fst-italic mb-2" style="direction: rtl; text-align: left;">{{article.jDateTime}}</div>
                     <!-- Post categories-->
                     <div>
-                        {% for category in article.category_published.all %}
+                        {% for category in article.category.active %}
                         <a class="badge bg-secondary text-decoration-none link-light" href="{% url 'blog:categoryPage' category.slug %}">{{category.title}}</a>
                         {% endfor %}
                     </div>

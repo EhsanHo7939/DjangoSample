@@ -13,7 +13,7 @@ def home(request, page=1):
     context = {
         "articles": page_obj,
     }
-    return render(request, "blog/home.html", context)
+    return render(request, "blog/homePage.html", context)
 
 
 def articleDetails(request, slug):
