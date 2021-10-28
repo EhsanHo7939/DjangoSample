@@ -57,8 +57,8 @@ class CategoryAdmin(admin.ModelAdmin):
 
 
 class ArticleAdmin(admin.ModelAdmin):
-    list_display = ('title','thumbnail_tag','slug','jDateTime','status','category_to_str')
-    list_filter = ('publish', 'status')
+    list_display = ('title','thumbnail_tag','slug','author','jDateTime','status','category_to_str')
+    list_filter = ('publish', 'status', 'author')
     search_fields = ('title','slug','description')    
     ordering = ('status', '-publish')
 

@@ -29,7 +29,15 @@
 {% endblock %}
  
 <!-- Pagination-->
-{% block first_page %}{% url 'blog:home' 1 %}{% endblock %}
-{% block previous_page %}{% url 'blog:home' articles.previous_page_number %}{% endblock %}
-{% block next_page %}{% url 'blog:home' articles.next_page_number %}{% endblock %}
-{% block last_page %}{% url 'blog:home' articles.paginator.num_pages %}{% endblock %}
+{% block first_page %}
+    {% url 'blog:home' 1 %}
+{% endblock %}
+{% block previous_page %}
+    {% url 'blog:home' articles.previous_page_number %}
+{% endblock %}
+{% block next_page %}
+    {% url 'blog:home' articles.next_page_number %}
+{% endblock %}
+{% block last_page %}
+    {% url 'blog:home' articles.paginator.num_pages %}
+{% endblock %}

@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 from django.utils import timezone
 from extensions.utils import jalali_datetime
 from django.utils.html import format_html
@@ -49,6 +50,7 @@ class Article(models.Model):
         ('d', 'Draft'),
         ('p', 'Published')
     )
+    author = models.ForeignKey(User, null=True, on_delete=models.SET_NULL, related_name="articles", verbose_name="Author")
     title = models.CharField(max_length=200)
     slug = models.SlugField(max_length=100, unique=True)
     category = models.ManyToManyField(Category, verbose_name="Category", related_name="articles")

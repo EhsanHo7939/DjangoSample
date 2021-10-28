@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.core.paginator import Paginator
 from django.shortcuts import render, get_object_or_404
 from .models import Article, Category
@@ -33,3 +34,15 @@ def categoryPage(request, slug, page=1):
         "articles" : page_obj
     }
     return render(request, "blog/categoryPage.html", context)
+
+
+def authorPage(request, username, page=1):
+    author = get_object_or_404(User, username=username)
+    article_list = author.articles.published()
+    paginator = Paginator(article_list , 4)
+    page_obj = paginator.get_page(page)
+    context = {
+        "author" : author,
+        "articles" : page_obj
+    }
+    return render(request, "blog/author.html", context)

@@ -1,7 +1,7 @@
 {% extends 'blog/page.html' %}
 {% load static %}
 {% block title %}
-    Category | {{category.title}}
+    Author | {{author.get_full_name}}
 {% endblock %}
 
 {% block header %}
@@ -9,7 +9,7 @@
 <header class="py-5 bg-light border-bottom mb-4">
     <div class="container">
         <div class="text-center my-5">
-            <h3 class="fw-bolder" style="color: var(--bs-body-color);">Category: {{category.title}}</h3>
+            <h3 class="fw-bolder" style="color: var(--bs-body-color);">Author: {{author.get_full_name}}</h3>
         </div>
     </div>
 </header>
@@ -20,14 +20,14 @@
 
 <!-- Pagination-->
 {% block first_page %}
-    {% url 'blog:categoryPage' category.slug 1 %}
+    {% url 'blog:authorPage' author.username 1 %}
 {% endblock %}
 {% block previous_page %}
-    {% url 'blog:categoryPage' category.slug articles.previous_page_number %}
+    {% url 'blog:authorPage' author.username articles.previous_page_number %}
 {% endblock %}
 {% block next_page %}
-    {% url 'blog:categoryPage' category.slug articles.next_page_number %}
+    {% url 'blog:authorPage' author.username articles.next_page_number %}
 {% endblock %}
 {% block last_page %}
-    {% url 'blog:categoryPage' category.slug articles.paginator.num_pages %}
+    {% url 'blog:authorPage' author.username articles.paginator.num_pages %}
 {% endblock %}
