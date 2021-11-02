@@ -2,7 +2,7 @@
 <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="{% url 'blog:home' %}" class="brand-link">
+    <a href="{% url 'blog:home' %}" target="_blank" class="brand-link">
       <img src="{% static 'registration/adminlte/assets/img/AdminLTELogo.png' %}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
       <span class="brand-text font-weight-light">Cactus &#127797;&#128420;</span>
     </a>
@@ -46,7 +46,7 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="#!" class="nav-link active">
+                <a href="{% url 'account:userHome' %}" class="nav-link active">
                   <i class="fa fa-list nav-icon"></i>
                   <p>Article List</p>
                 </a>
@@ -64,7 +64,6 @@
               <i class="nav-icon fa fa-user"></i>
               <p>
                 Profile
-                <span class="right badge badge-danger">New</span>
               </p>
             </a>
           </li>
