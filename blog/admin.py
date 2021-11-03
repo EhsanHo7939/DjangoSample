@@ -62,11 +62,6 @@ class ArticleAdmin(admin.ModelAdmin):
     search_fields = ('title','slug','description')    
     ordering = ('status', '-publish')
 
-    def category_to_str(self, obj):
-        return ", ".join([category.title for category in obj.category.active()])
-
-    category_to_str.short_description = "Category"
-
     actions = [make_published, make_draft]
 
 
