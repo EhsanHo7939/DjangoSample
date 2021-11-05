@@ -1,8 +1,8 @@
 {% extends 'registration/base.html' %}
 
-{% block title %}
+{% block title %}{% block title-meta %}
     Article List
-{% endblock %}
+{% endblock %}{% endblock %}
 
 {% block main %}
 <div class="row">
@@ -42,7 +42,7 @@
                 <tr>
                     <td>{{article.title}}</td>
                     <td>{{article.thumbnail_tag}}</td>
-                    <td>{{article.description | truncatewords:10}}</td>
+                    <td>{{article.description | striptags | truncatewords:10}}</td>
                     <td>{{article.author.get_full_name}}</td>
                     <td style="direction: rtl; text-align: left;">{{article.jDateTime}}</td>
                     <td>{{article.category_to_str}}</td>

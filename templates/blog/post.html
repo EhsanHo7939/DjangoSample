@@ -28,7 +28,7 @@
                 <figure class="mb-4"><img class="img-fluid rounded" src="{{article.thumbnail.url}}" alt="..." /></figure>
                 <!-- Post content-->
                 <section class="mb-5">
-                    <p class="fs-5 mb-4">{{article.description|linebreaks}}</p>
+                    <p class="fs-5 mb-4">{{article.description | safe | linebreaks}}</p>
                 </section>
             </article>
             <!-- Comments section-->
