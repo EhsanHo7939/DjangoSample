@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.urls import reverse
 from django.utils import timezone
 from extensions.utils import jalali_datetime
 from django.utils.html import format_html
@@ -68,6 +69,9 @@ class Article(models.Model):
 
     def __str__(self):
         return self.title
+
+    def get_absolute_url(self):
+        return reverse("account:userHome")
 
     def jDateTime(self):
         return jalali_datetime(self.publish)
