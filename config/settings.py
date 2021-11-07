@@ -147,3 +147,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # crispy settings
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+# User Authentication
+AUTH_USER_MODEL = 'account.User'
