@@ -3,5 +3,16 @@ from django.contrib.auth.admin import UserAdmin
 from .models import User
 
 
+UserAdmin.fieldsets[2][1]['fields'] = (
+    'is_active',
+    'is_superuser',
+    'is_author',
+    'VIP_user',
+    'groups',
+    'user_permissions',
+)
+
+UserAdmin.list_display += ('is_author', 'is_VIP_user')
+
 # Register your models here.
 admin.site.register(User, UserAdmin)

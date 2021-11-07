@@ -15,3 +15,6 @@ class User(AbstractUser):
             return True
         else:
             return False
+    
+    is_VIP_user.boolean = True
+    is_VIP_user.short_description = "VIP Status"
