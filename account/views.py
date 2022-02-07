@@ -1,6 +1,6 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
-from .mixins import FieldsMixin, FormValidMixin
-from django.views.generic import ListView, CreateView
+from .mixins import FieldsMixin, FormValidMixin, AuthorAccessMixin
+from django.views.generic import ListView, CreateView, UpdateView
 from blog.models import Article
 
 
@@ -19,3 +19,10 @@ class ArticleList(LoginRequiredMixin, ListView):
 class ArticleCreate(LoginRequiredMixin, FieldsMixin, FormValidMixin, CreateView):
     model = Article
     template_name = "registration/article-create-update.html"
+
+
+class ArticleUpdate(AuthorAccessMixin, FieldsMixin, FormValidMixin, UpdateView):
+    model = Article
+    template_name = "registration/article-create-update.html"
+
+
