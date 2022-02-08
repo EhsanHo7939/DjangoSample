@@ -44,6 +44,9 @@
                     </div>
                 {% endif %}
                 <button class="btn btn-primary">Send</button>
+                {% if user.is_superuser and request.resolver_match.kwargs.pk %}
+                    <a href="{% url 'account:article-delete' request.resolver_match.kwargs.pk %}" class="btn btn-danger">Delete</a>
+                {% endif %}
             </form>
         </div>
     </div>
