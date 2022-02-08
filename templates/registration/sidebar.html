@@ -1,4 +1,6 @@
 {% load static %}
+{% load partial_tags %}
+
 <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
@@ -46,26 +48,15 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{% url 'account:userHome' %}" class="nav-link active">
-                  <i class="fa fa-list nav-icon"></i>
-                  <p>Article List</p>
-                </a>
+                {% active_link request 'userHome' 'Article List' 'fa fa-list nav-icon' %}
               </li>
               <li class="nav-item">
-                <a href="{% url 'account:article-create' %}" class="nav-link">
-                  <i class="fa fa-edit nav-icon"></i>
-                  <p>Add Article</p>
-                </a>
+                {% active_link request 'article-create' 'Add Article' 'fa fa-edit nav-icon' %}
               </li>
             </ul>
           </li>
           <li class="nav-item">
-            <a href="#!" class="nav-link">
-              <i class="nav-icon fa fa-user"></i>
-              <p>
-                Profile
-              </p>
-            </a>
+            {% active_link request 'article-create' 'Profile' 'fa fa-user nav-icon' %}
           </li>
         </ul>
       </nav>
