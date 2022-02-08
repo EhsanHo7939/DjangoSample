@@ -54,3 +54,11 @@ class AuthorAccessMixin():
         else:
             raise Http404("You have NOT access to this page!")
 
+
+class SuperUserAccessMixin():
+    def dispatch(self, request, pk, *args, **kwargs):
+        if request.user.is_superuser:
+            return super().dispatch(request, *args, **kwargs)
+        else:
+            raise Http404("You have NOT access to this page!")
+

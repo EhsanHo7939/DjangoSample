@@ -60,11 +60,15 @@
                     <td>{{article.category_to_str}}</td>
                     <td>
                         {% if article.status == 'p' %}
-                            <span class="badge badge-success">Published</span>
-                            <br>
-                            <a class="badge badge-primary" href="{% url 'blog:articleDetails' article.slug %}" target="_blank">view Article</a>
+                          <span class="badge badge-success">Published</span>
+                          <br>
+                          <a class="badge badge-primary" href="{% url 'blog:articleDetails' article.slug %}" target="_blank">view Article</a>
                         {% else %}
-                            <span class="badge badge-danger">Draft</span>
+                          <span class="badge badge-secondary">Draft</span>
+                        {% endif %}
+                        {% if user.is_superuser %}
+                          <br>
+                          <a class="badge badge-danger" href="{% url 'account:article-delete' article.pk %}">Delete</a>
                         {% endif %}
                     </td>
                 </tr>
