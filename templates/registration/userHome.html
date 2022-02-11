@@ -63,9 +63,11 @@
                             {% if article.status == 'p' %}
                               <span class="badge badge-success">Published</span>
                               <br>
-                              <a class="badge badge-primary" href="{% url 'blog:articleDetails' article.slug %}" target="_blank">view Article</a>
+                              <a class="badge badge-primary" href="{% url 'blog:articleDetails' article.slug %}" target="_blank">View Article</a>
                             {% else %}
                               <span class="badge badge-secondary">Draft</span>
+                              <br>
+                              <a class="badge badge-primary" href="{% url 'blog:articlePreview' article.pk %}" target="_blank">Preview</a>
                             {% endif %}
                             {% if user.is_superuser %}
                               <br>

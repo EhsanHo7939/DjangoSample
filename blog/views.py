@@ -1,4 +1,6 @@
 from account.models import User
+from django.views.generic import DetailView
+from account.mixins import AuthorAccessMixin_draftPreview
 from django.core.paginator import Paginator
 from django.shortcuts import render, get_object_or_404
 from .models import Article, Category
@@ -22,6 +24,13 @@ def articleDetails(request, slug):
         "article": get_object_or_404(Article.objects.published(), slug=slug),
     }
     return render(request,"blog/post.html", context)
+
+
+class articlePreview(AuthorAccessMixin_draftPreview, DetailView):
+    def get_object(self):
+        pk = self.kwargs.get('pk')
+        return get_object_or_404(Article, pk=pk)
+    template_name = "blog/post.html"
 
 
 def categoryPage(request, slug, page=1):
