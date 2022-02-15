@@ -48,7 +48,7 @@
                 {% for article in object_list %}
                     <tr>
                         <td>
-                          {% if article.status == 'd' or user.is_superuser %}
+                          {% if article.status in 'dr'|make_list or user.is_superuser %}
                             <a href="{% url 'account:article-update' article.pk %}">{{article.title}}</a>
                           {% else %}
                             {{article.title}}
@@ -63,11 +63,21 @@
                             {% if article.status == 'p' %}
                               <span class="badge badge-success">Published</span>
                               <br>
-                              <a class="badge badge-primary" href="{% url 'blog:articleDetails' article.slug %}" target="_blank">View Article</a>
-                            {% else %}
-                              <span class="badge badge-secondary">Draft</span>
+                              <a class="badge badge-secondary" href="{% url 'blog:articleDetails' article.slug %}" target="_blank">View Article</a>
+                            {% elif article.status == 'd' %}
+                              <span class="badge badge-dark">Draft</span>
                               <br>
-                              <a class="badge badge-primary" href="{% url 'blog:articlePreview' article.pk %}" target="_blank">Preview</a>
+                              <a class="badge badge-info" href="{% url 'blog:articlePreview' article.pk %}" target="_blank">Preview</a>
+                            {% elif article.status == 'i' %}
+                              <span class="badge badge-primary">Investigating</span>
+                              {% if user.is_superuser %}
+                                <br>
+                                <a class="badge badge-info" href="{% url 'blog:articlePreview' article.pk %}" target="_blank">Preview</a>
+                              {% endif %}
+                            {% elif article.status == 'r' %}
+                              <span class="badge badge-warning">Returned</span>
+                              <br>
+                              <a class="badge badge-info" href="{% url 'blog:articlePreview' article.pk %}" target="_blank">Preview</a>
                             {% endif %}
                             {% if user.is_superuser %}
                               <br>
