@@ -1,0 +1,40 @@
+{% extends 'registration/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}{% block title-meta %}
+    {{ user.get_short_name }}'s Profile
+{% endblock %}{% endblock %}
+
+{% block main %}
+<div class="col-md-8 mx-auto">
+    <div class="card card-primary">
+        <div class="card-header">
+            <h3 class="card-title mb-0">Profile</h3>
+        </div>
+        <div class="card-body">
+            <form method="post" enctype="multipart/form-data">{% csrf_token %}
+                <div class="row">
+                    <div class="col-6">
+                        {{ form.username|as_crispy_field }}
+                    </div>
+                    <div class="col-6">
+                        {{ form.email|as_crispy_field }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        {{ form.first_name|as_crispy_field }}
+                        {{ form.VIP_user|as_crispy_field }}
+                        {{ form.is_author|as_crispy_field }}
+                    </div>
+                    <div class="col-6">
+                        {{ form.last_name|as_crispy_field }}
+                        {{ form.date_joined|as_crispy_field }}
+                    </div>
+                </div>
+                <button class="btn btn-primary">Update Profile</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

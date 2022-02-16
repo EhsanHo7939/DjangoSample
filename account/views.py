@@ -1,4 +1,5 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
+from .models import User
 from .mixins import (
     FieldsMixin,
     FormValidMixin,
@@ -41,4 +42,22 @@ class ArticleDelete(SuperUserAccessMixin, FieldsMixin, FormValidMixin, DeleteVie
     model = Article
     success_url = reverse_lazy('account:userHome')
     template_name = "registration/article-delete.html"
+
+
+class Profile(UpdateView):
+    model = User
+    template_name = "registration/profile.html"
+    fields = [
+        'username',
+        'email',
+        'first_name',
+        'last_name',
+        'VIP_user',
+        'is_author',
+        'date_joined',
+    ]
+    success_url = reverse_lazy("account:profile")
+
+    def get_object(self):
+        return User.objects.get(pk=self.request.user.pk)
 
