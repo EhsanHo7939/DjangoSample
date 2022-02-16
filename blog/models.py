@@ -62,6 +62,7 @@ class Article(models.Model):
     publish = models.DateTimeField(default=timezone.now)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
+    is_VIP = models.BooleanField(default=False, verbose_name="VIP")
     status = models.CharField(max_length=1, choices=STATUS_CHOICES)
 
     class Meta:

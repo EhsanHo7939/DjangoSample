@@ -28,7 +28,15 @@
                 <figure class="mb-4"><img class="img-fluid rounded" src="{{article.thumbnail.url}}" alt="..." /></figure>
                 <!-- Post content-->
                 <section class="mb-5">
-                    <p class="fs-5 mb-4">{{article.description | safe | linebreaks}}</p>
+                    {% if article.is_VIP %}
+                        {% if user.is_authenticated and user.is_VIP_user or user.is_superuser or user.is_authenticated and user.is_author %}
+                            <p class="fs-5 mb-4">{{article.description | safe | linebreaks}}</p>
+                        {% else %}
+                            <p class="fs-5 mb-4">This article is VIP. <a href="#!" style="text-decoration: none">Upgrade your account.</a></p>
+                        {% endif %}
+                    {% else %}
+                        <p class="fs-5 mb-4">{{article.description | safe | linebreaks}}</p>
+                    {% endif %}
                 </section>
             </article>
             <!-- Comments section-->

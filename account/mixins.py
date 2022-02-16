@@ -14,6 +14,7 @@ class FieldsMixin():
                 "description",
                 "thumbnail",
                 "publish",
+                "is_VIP",
                 "status",
             ]
         
@@ -25,6 +26,7 @@ class FieldsMixin():
                 "description",
                 "thumbnail",
                 "publish",
+                "is_VIP",
             ]
         
         else:

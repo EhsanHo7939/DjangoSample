@@ -49,7 +49,12 @@ deactivate_category.short_description = "Deactivate selected Categories"
 
 # Admin Panels
 class CategoryAdmin(admin.ModelAdmin):
-    list_display = ('position', 'title', 'slug', 'status')
+    list_display = (
+        'position',
+        'title',
+        'slug',
+        'status'
+    )
     list_filter = (['status'])
     search_fields = ('title', 'slug')
 
@@ -57,7 +62,16 @@ class CategoryAdmin(admin.ModelAdmin):
 
 
 class ArticleAdmin(admin.ModelAdmin):
-    list_display = ('title','thumbnail_tag','slug','author','jDateTime','status','category_to_str')
+    list_display = (
+        'title',
+        'thumbnail_tag',
+        'slug',
+        'author',
+        'jDateTime',
+        'status',
+        'is_VIP',
+        'category_to_str'
+    )
     list_filter = ('publish', 'status', 'author')
     search_fields = ('title','slug','description')    
     ordering = ('status', '-publish')

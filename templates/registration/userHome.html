@@ -41,6 +41,7 @@
                   <th>Author</th>
                   <th>Date & Time</th>
                   <th>Category</th>
+                  <th>VIP</th>
                   <th>Status</th>
                 </tr>
               </thead>
@@ -59,6 +60,13 @@
                         <td>{{article.author.get_full_name}}</td>
                         <td style="direction: rtl; text-align: left;">{{article.jDateTime}}</td>
                         <td>{{article.category_to_str}}</td>
+                        <td >
+                          {% if article.is_VIP %}
+                            <i class="fa fa-check-circle" style="color: green"></i>
+                          {% else %}
+                            <i class="fa fa-times-circle" style="color: red"></i>
+                          {% endif %}
+                        </td>
                         <td>
                             {% if article.status == 'p' %}
                               <span class="badge badge-success">Published</span>
