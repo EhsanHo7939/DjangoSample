@@ -14,6 +14,7 @@ from django.views.generic import (
 )
 from django.urls import reverse_lazy
 from blog.models import Article
+from .forms import ProfileForm
 
 
 # Create your views here.
@@ -47,15 +48,7 @@ class ArticleDelete(SuperUserAccessMixin, FieldsMixin, FormValidMixin, DeleteVie
 class Profile(UpdateView):
     model = User
     template_name = "registration/profile.html"
-    fields = [
-        'username',
-        'email',
-        'first_name',
-        'last_name',
-        'VIP_user',
-        'is_author',
-        'date_joined',
-    ]
+    form_class = ProfileForm
     success_url = reverse_lazy("account:profile")
 
     def get_object(self):
