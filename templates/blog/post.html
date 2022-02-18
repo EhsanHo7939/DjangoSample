@@ -36,7 +36,8 @@
                         {% if user.is_authenticated and user.is_VIP_user or user.is_superuser or user.is_authenticated and user.is_author %}
                             <p class="fs-5 mb-4">{{article.description | safe | linebreaks}}</p>
                         {% else %}
-                            <p class="fs-5 mb-4">This article is VIP. <a href="#!" style="text-decoration: none">Upgrade your account.</a></p>
+                            <p class="fs-6 mb-4">{{article.description | striptags | truncatewords:40}}</p>
+                            <p class="alert alert-warning text-center fs-5 mb-4 w-75 mx-auto">This article is VIP. <a class="alert-link" href="#!" style="text-decoration: none">Upgrade your account.</a></p>
                         {% endif %}
                     {% else %}
                         <p class="fs-5 mb-4">{{article.description | safe | linebreaks}}</p>

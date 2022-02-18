@@ -36,7 +36,8 @@
                             {% if user.is_authenticated and user.is_VIP_user or user.is_superuser or user.is_authenticated and user.is_author %}
                                 {{article.description | striptags | truncatewords:20}}
                             {% else %}
-                                This article is VIP. <a href="#!" style="text-decoration: none">Upgrade your account.</a>
+                                {{article.description | striptags | truncatewords:20}}
+                                <p class="text-center bg-light w-75 mx-auto py-2">This article is VIP. <a href="#!" style="text-decoration: none">Upgrade your account.</a></p>
                             {% endif %}
                         {% else %}
                             {{article.description | striptags | truncatewords:20}}
