@@ -13,7 +13,11 @@
                 <!-- Post header-->
                 <header class="mb-4">
                     <!-- Post title-->
-                    <h1 class="fw-bolder mb-1">{{article.title}}</h1>
+                    <h1 class="fw-bolder mb-1">{{article.title}}
+                    {% if article.is_VIP %}
+                        <span class="badge bg-danger"  style="font-size: 12px">VIP</span>
+                    {% endif %}
+                    </h1>
                     <!-- Post meta content-->
                     <div class="text-muted fst-italic mb-2" style="direction: rtl; text-align: left;">{{article.jDateTime}}</div>
                     <p class="small text-muted">Written by: <a style="text-decoration: none;" href="{% url 'blog:authorPage' article.author %}">{{article.author.get_full_name}}</a></p>

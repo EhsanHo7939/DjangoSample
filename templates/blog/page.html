@@ -26,7 +26,11 @@
                 <a href="{% url 'blog:articleDetails' article.slug %}"><img class="card-img-top" src="{{article.thumbnail.url}} " alt="..." /></a>
                 <div class="card-body">
                     <div class="small text-muted" style="direction: rtl; text-align: left;">{{article.jDateTime}}</div>
-                    <h2 class="card-title h4">{{article.title}}</h2>
+                    <h2 class="card-title h4">{{article.title}}
+                    {% if article.is_VIP %}
+                        <span class="badge bg-danger"  style="font-size: 10px">VIP</span>
+                    {% endif %}
+                    </h2>
                     <p class="card-text">
                         {% if article.is_VIP %}
                             {% if user.is_authenticated and user.is_VIP_user or user.is_superuser or user.is_authenticated and user.is_author %}
