@@ -1,5 +1,5 @@
 from django.http import Http404
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, redirect
 from blog.models import Article
 
 
@@ -50,21 +50,27 @@ class FormValidMixin():
 class AuthorAccessMixin():
     def dispatch(self, request, pk, *args, **kwargs):
         article = get_object_or_404(Article, pk=pk)
-        if request.user.is_superuser or\
-           article.author == request.user and article.status in ['d', 'r']:
-            return super().dispatch(request, *args, **kwargs)
+        if request.user.is_authenticated:
+            if request.user.is_superuser or\
+            article.author == request.user and article.status in ['d', 'r']:
+                return super().dispatch(request, *args, **kwargs)
+            else:
+                raise Http404("You have NOT access to this page!")
         else:
-            raise Http404("You have NOT access to this page!")
+            return redirect('account:login')
 
 
 class AuthorAccessMixin_draftPreview():
     def dispatch(self, request, pk, *args, **kwargs):
         article = get_object_or_404(Article, pk=pk)
-        if request.user.is_superuser and article.status in ['d', 'r', 'i'] or\
-           article.author == request.user and article.status in ['d', 'r']:
-            return super().dispatch(request, *args, **kwargs)
+        if request.user.is_authenticated:
+            if request.user.is_superuser and article.status in ['d', 'r', 'i'] or\
+            article.author == request.user and article.status in ['d', 'r']:
+                return super().dispatch(request, *args, **kwargs)
+            else:
+                raise Http404("You have NOT access to this page!")
         else:
-            raise Http404("You have NOT access to this page!")
+            return redirect('account:login')
 
 
 class SuperUserAccessMixin():
@@ -73,4 +79,15 @@ class SuperUserAccessMixin():
             return super().dispatch(request, *args, **kwargs)
         else:
             raise Http404("You have NOT access to this page!")
+
+
+class AuthorsAccessMixin():
+    def dispatch(self, request, *args, **kwargs):
+        if request.user.is_authenticated:
+            if request.user.is_superuser or request.user.is_author:
+                return super().dispatch(request, *args, **kwargs)
+            else:
+                return redirect('account:profile')
+        else:
+            return redirect('account:login')
 
