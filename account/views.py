@@ -45,7 +45,7 @@ class ArticleDelete(SuperUserAccessMixin, FieldsMixin, FormValidMixin, DeleteVie
     template_name = "registration/article-delete.html"
 
 
-class Profile(UpdateView):
+class Profile(LoginRequiredMixin ,UpdateView):
     model = User
     template_name = "registration/profile.html"
     form_class = ProfileForm
