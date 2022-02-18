@@ -38,29 +38,31 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-          <li class="nav-item menu-open">
-            {% if request.resolver_match.url_name == 'userHome' %}
-              {% active_link request 'userHome' 'Articles' 'nav-icon fa fa-th' %}
-            {% elif request.resolver_match.url_name == 'article-create' %}
-              {% active_link request 'article-create' 'Articles' 'nav-icon fa fa-th' %}
-            {% else %}
-              <a href="#" class="nav-link">
-                <i class="nav-icon fa fa-th"></i>
-                <p>
-                  Articles
-                  <i class="right fas fa-angle-left"></i>
-                </p>
-              </a>
-            {% endif %}
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                {% active_link request 'userHome' 'Article List' 'fa fa-list nav-icon' %}
-              </li>
-              <li class="nav-item">
-                {% active_link request 'article-create' 'Add Article' 'fa fa-edit nav-icon' %}
-              </li>
-            </ul>
-          </li>
+          {% if user.is_superuser or user.is_author %}
+            <li class="nav-item menu-open">
+              {% if request.resolver_match.url_name == 'userHome' %}
+                {% active_link request 'userHome' 'Articles' 'nav-icon fa fa-th' %}
+              {% elif request.resolver_match.url_name == 'article-create' %}
+                {% active_link request 'article-create' 'Articles' 'nav-icon fa fa-th' %}
+              {% else %}
+                <a href="#" class="nav-link">
+                  <i class="nav-icon fa fa-th"></i>
+                  <p>
+                    Articles
+                    <i class="right fas fa-angle-left"></i>
+                  </p>
+                </a>
+              {% endif %}
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  {% active_link request 'userHome' 'Article List' 'fa fa-list nav-icon' %}
+                </li>
+                <li class="nav-item">
+                  {% active_link request 'article-create' 'Add Article' 'fa fa-edit nav-icon' %}
+                </li>
+              </ul>
+            </li>
+          {% endif %}
           <li class="nav-item">
             {% active_link request 'profile' 'Profile' 'fa fa-user nav-icon' %}
           </li>
