@@ -43,6 +43,23 @@
                             {{ form.status|as_crispy_field }}
                         </div>
                     </div>
+                {% else %}
+                    <div class="row">
+                        <div class="col-3">
+                            <div id="div_id_status" class="form-group">
+                                <label for="id_status" class=" requiredField">
+                                Status<span class="asteriskField">*</span>
+                                </label>
+                                <div class="">
+                                    <select name="status" class="select form-control" required="" id="id_status">
+                                    <option value="" selected="">---------</option>
+                                    <option value="d">Draft</option>
+                                    <option value="i">Send to Admin</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div> 
                 {% endif %}
                 <button class="btn btn-primary">Send</button>
                 {% if user.is_superuser and request.resolver_match.kwargs.pk %}
