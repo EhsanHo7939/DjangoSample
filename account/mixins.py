@@ -45,7 +45,7 @@ class AuthorAccessMixin():
             else:
                 raise Http404("You have NOT access to this page!")
         else:
-            return redirect('account:login')
+            return redirect('login')
 
 
 class AuthorAccessMixin_draftPreview():
@@ -58,7 +58,7 @@ class AuthorAccessMixin_draftPreview():
             else:
                 raise Http404("You have NOT access to this page!")
         else:
-            return redirect('account:login')
+            return redirect('login')
 
 
 class SuperUserAccessMixin():
@@ -77,5 +77,5 @@ class AuthorsAccessMixin():
             else:
                 return redirect('account:profile')
         else:
-            return redirect('account:login')
+            return redirect('login')
 

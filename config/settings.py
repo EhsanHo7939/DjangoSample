@@ -18,8 +18,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # User Login
 LOGIN_REDIRECT_URL = "account:userHome"
-LOGOUT_REDIRECT_URL = "account:login"
-LOGIN_URL = "account:login"
+LOGOUT_REDIRECT_URL = "login"
+LOGIN_URL = "login"
 
 
 # Quick-start development settings - unsuitable for production
@@ -151,3 +151,6 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 # User Authentication
 AUTH_USER_MODEL = 'account.User'
+
+# Email Backend
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

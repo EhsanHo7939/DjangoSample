@@ -81,7 +81,7 @@ class Article(models.Model):
     jDateTime.short_description = "Date & Time"
 
     def thumbnail_tag(self):
-        return format_html("<img width=100 height=70 style='border-radius: 5px;' src='{0}'".format(self.thumbnail.url))
+        return format_html("<img width=100 height=70 style='border-radius: 5px;' src='{0}'>".format(self.thumbnail.url))
     thumbnail_tag.short_description = "Thumbnail"
 
     def category_to_str(self):
