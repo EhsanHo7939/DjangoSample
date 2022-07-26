@@ -7,6 +7,7 @@ from django.contrib.auth.models import AbstractUser
 # Create your models here.
 
 class User(AbstractUser):
+    email = models.EmailField(unique=True, verbose_name='Email')
     is_author = models.BooleanField(default=False, verbose_name="Authorship Status")
     VIP_user = models.DateTimeField(default=timezone.now, verbose_name="VIP until")
 
