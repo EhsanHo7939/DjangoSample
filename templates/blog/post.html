@@ -1,4 +1,5 @@
 {% extends 'blog/base.html' %}
+{% load comment_tags %}
 {% block title %}
     Post | {{article.title}}
 {% endblock %}
@@ -44,8 +45,18 @@
                     {% endif %}
                 </section>
             </article>
+
             <!-- Comments section-->
             <section class="mb-5">
+                <div class="card bg-light">
+                    <div class="card-body">
+                        {% render_comments article request %}
+                        {% comment %} {% include_bootstrap %} {% endcomment %}
+                    </div>
+                </div>
+            </section>
+
+            {% comment %} <section class="mb-5">
                 <div class="card bg-light">
                     <div class="card-body">
                         <!-- Comment form-->
@@ -85,7 +96,8 @@
                         </div>
                     </div>
                 </div>
-            </section>
+            </section> {% endcomment %}
+            
         </div>
         
 {% endblock %}

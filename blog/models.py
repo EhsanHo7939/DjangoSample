@@ -4,7 +4,8 @@ from django.urls import reverse
 from django.utils import timezone
 from extensions.utils import jalali_datetime
 from django.utils.html import format_html
-
+from django.contrib.contenttypes.fields import GenericRelation
+from comment.models import Comment
 
 
 
@@ -64,6 +65,7 @@ class Article(models.Model):
     updated = models.DateTimeField(auto_now=True)
     is_VIP = models.BooleanField(default=False, verbose_name="VIP")
     status = models.CharField(max_length=1, choices=STATUS_CHOICES)
+    comments = GenericRelation(Comment)
 
     class Meta:
         verbose_name = "Article"
