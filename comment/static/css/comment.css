@@ -182,3 +182,12 @@ input#search-input:focus::placeholder {
 .three-dots-dropdown > li:hover {
     background: #f1f1f1;
 }
+
+
+.media-comment-bubble {
+    border-radius: 15px;
+    position: relative;
+    background-color: #d1d1d1;
+    padding: 1rem 1.25rem;
+    width: 96%;
+}
