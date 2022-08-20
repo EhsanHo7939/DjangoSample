@@ -11,6 +11,10 @@ from comment.responses import UTF8JsonResponse
 from comment.messages import EmailError
 from comment.views import CommentCreateMixin, BaseCommentView
 
+from django.contrib.sites.shortcuts import get_current_site
+from django.core.mail import EmailMessage
+from django.urls import reverse
+
 
 class CreateComment(CanCreateMixin, CommentCreateMixin):
     comment = None
@@ -42,6 +46,56 @@ class CreateComment(CanCreateMixin, CommentCreateMixin):
         )
         self.comment = self.perform_create(temp_comment, self.request)
         self.data = render_to_string(self.get_template_names(), self.get_context_data(), request=self.request)
+
+        # Send Email Section
+        article = self.comment.content_object
+        current_site = get_current_site(self.request)
+
+        author_email = article.author.email
+        user_email = self.comment.user.email
+        parent_email = False
+
+        if self.comment.parent:
+            parent_email = self.comment.parent.user.email
+        
+
+        # send email to author
+        if user_email != author_email:
+            if not parent_email:
+                mail_subject = "New Comment"
+                message = "Hi dear author\n\nYour \"{0}\" article has recieved new comment.\n\nClick on the link to check:\n{1}{2}".format(article, current_site, reverse("blog:articleDetails", kwargs={'slug': article.slug}))
+                email = EmailMessage(
+                        mail_subject,
+                        message,
+                        to=[author_email]
+                )
+                email.send()
+
+
+        # send email to parent
+        if user_email != parent_email:
+            mail_subject = "New Comment Reply"
+            message = "Hi dear user\n\nYour comment for \"{0}\" article has recieved new reply.\n\nClick on the link to check:\n{1}{2}".format(article, current_site, reverse("blog:articleDetails", kwargs={'slug': article.slug}))
+            email = EmailMessage(
+                        mail_subject,
+                        message,
+                        to=[parent_email]
+            )
+            email.send()
+
+
+        # send email to user
+        if not parent_email and user_email != author_email:
+            mail_subject = "Your comment recieved"
+            message = "Hi dear user\n\nYour comment for \"{0}\" article at {1} has been recieved.\n\nThank you.".format(article, current_site)
+            email = EmailMessage(
+                        mail_subject,
+                        message,
+                        to=[user_email]
+            )
+            email.send()
+
+
         return UTF8JsonResponse(self.json())
 
     def form_invalid(self, form):
