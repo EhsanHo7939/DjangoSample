@@ -1,5 +1,6 @@
 {% extends 'blog/base.html' %}
 {% load static %}
+{% load ratings %}
 {% block title %}
 {% endblock %}
 
@@ -43,9 +44,12 @@
                             {{article.description | striptags | truncatewords:20}}
                         {% endif %}
                     </p>
+                    <div class="small pb-3" style="font-size:13px">
+                        {% ratings article  %}
+                    </div>
                     <p class="small text-muted">Written by: <a style="text-decoration: none;" href="{% url 'blog:authorPage' article.author %}">{{article.author.get_full_name}}</a></p>
                     <!-- Post categories-->
-                    <div>
+                    <div class="mb-1">
                         {% for category in article.category.active %}
                         <a class="text-decoration-none" href="{% url 'blog:categoryPage' category.slug %}">#{{category.title}}</a>
                         {% endfor %}

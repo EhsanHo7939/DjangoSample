@@ -1,5 +1,6 @@
 {% extends 'blog/base.html' %}
 {% load comment_tags %}
+{% load ratings %}
 {% block title %}
     Post | {{article.title}}
 {% endblock %}
@@ -44,6 +45,11 @@
                         <p class="fs-5 mb-4">{{article.description | safe | linebreaks}}</p>
                     {% endif %}
                 </section>
+                <div class="py-4 w-50 mx-auto" style="background-color:#bdbbbb; border-radius:13px;">
+                    <div class="text-center small">
+                        {% ratings article %}
+                    </div>
+                </div>
             </article>
 
             <!-- Comments section-->
