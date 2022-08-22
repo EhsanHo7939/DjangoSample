@@ -37,7 +37,6 @@ class IpAddress(models.Model):
 
     def __str__(self):
         return self.ip_address
-    
 
 
 
@@ -80,7 +79,7 @@ class Article(models.Model):
     is_VIP = models.BooleanField(default=False, verbose_name="VIP")
     status = models.CharField(max_length=1, choices=STATUS_CHOICES)
     comments = GenericRelation(Comment)
-    hits = models.ManyToManyField(IpAddress, blank=True, related_name="articles", verbose_name="Hits")
+    hits = models.ManyToManyField(IpAddress, through="ArticleHits", blank=True, related_name="articles", verbose_name="Hits")
 
     class Meta:
         verbose_name = "Article"
@@ -106,3 +105,11 @@ class Article(models.Model):
     category_to_str.short_description = "Category"
 
     objects = ArticleManager()
+
+
+
+
+class ArticleHits(models.Model):
+    article = models.ForeignKey(Article, on_delete=models.CASCADE)
+    ip_address = models.ForeignKey(IpAddress, on_delete=models.CASCADE)
+    created = models.DateTimeField(auto_now_add=True)
