@@ -20,9 +20,18 @@ def home(request, page=1):
 
 
 def articleDetails(request, slug):
+    
+    article = get_object_or_404(Article.objects.published(), slug=slug)
+
     context = {
-        "article": get_object_or_404(Article.objects.published(), slug=slug),
+        "article": article,
     }
+
+    ip_address = request.user.ip_address
+
+    if ip_address not in article.hits.all():
+        article.hits.add(ip_address)
+
     return render(request,"blog/post.html", context)
 
 

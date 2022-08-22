@@ -1,8 +1,8 @@
 from django.contrib import admin
-from .models import Article, Category
+from .models import Article, Category, IpAddress
 
 # Admin Panel Header
-admin.site.site_header = "Cactus 🌵🖤"
+admin.site.site_header = 'Cactus 🌵'
 
 # Panel Actions
 
@@ -84,3 +84,4 @@ class ArticleAdmin(admin.ModelAdmin):
 # Register your models here.
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(Article, ArticleAdmin)
+admin.site.register(IpAddress)

@@ -28,6 +28,20 @@ class CategoryManager(models.Manager):
 
 # Create your models here.
 
+class IpAddress(models.Model):
+    ip_address = models.GenericIPAddressField(verbose_name="IP Address")
+
+    class Meta:
+        verbose_name = "IP Address"
+        verbose_name_plural = "IP Addresses"
+
+    def __str__(self):
+        return self.ip_address
+    
+
+
+
+
 class Category(models.Model):
     title = models.CharField(max_length=200)
     slug = models.SlugField(max_length=100, unique=True)
@@ -66,6 +80,7 @@ class Article(models.Model):
     is_VIP = models.BooleanField(default=False, verbose_name="VIP")
     status = models.CharField(max_length=1, choices=STATUS_CHOICES)
     comments = GenericRelation(Comment)
+    hits = models.ManyToManyField(IpAddress, blank=True, related_name="articles", verbose_name="Hits")
 
     class Meta:
         verbose_name = "Article"

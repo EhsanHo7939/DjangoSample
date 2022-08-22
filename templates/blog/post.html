@@ -22,6 +22,7 @@
                     </h1>
                     <!-- Post meta content-->
                     <div class="text-muted fst-italic mb-2" style="direction: rtl; text-align: left;">{{article.jDateTime}}</div>
+                    <small class="text-primary fw-bold">Views: {{article.hits.count}}</small>
                     <p class="small text-muted">Written by: <a style="text-decoration: none;" href="{% url 'blog:authorPage' article.author %}">{{article.author.get_full_name}}</a></p>
                     <!-- Post categories-->
                     <div>

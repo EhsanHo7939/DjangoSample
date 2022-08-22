@@ -47,9 +47,10 @@
                     <div class="small pb-3" style="font-size:13px">
                         {% ratings article  %}
                     </div>
-                    <p class="small text-muted">Written by: <a style="text-decoration: none;" href="{% url 'blog:authorPage' article.author %}">{{article.author.get_full_name}}</a></p>
+                    <p class="small text-muted mb-0">Written by: <a style="text-decoration: none;" href="{% url 'blog:authorPage' article.author %}">{{article.author.get_full_name}}</a></p>
+                    <small class="text-primary">Views: {{article.hits.count}}</small>
                     <!-- Post categories-->
-                    <div class="mb-1">
+                    <div class="mb-1 mt-2">
                         {% for category in article.category.active %}
                         <a class="text-decoration-none" href="{% url 'blog:categoryPage' category.slug %}">#{{category.title}}</a>
                         {% endfor %}
