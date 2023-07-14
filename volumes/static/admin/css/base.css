@@ -1,6 +1,5 @@
 /*
     DJANGO Admin styles
-    My Own Styles
 */
 
 @import url(fonts.css);
@@ -1050,16 +1049,4 @@ table#change-history tbody th {
 
 .popup #header {
     padding: 10px 20px;
-}
-
-
-/* My Own CSS */
-
-.field-jDateTime {
-    direction: rtl;
-    text-align: left;
-}
-
-th, td {
-    vertical-align: middle;
 }

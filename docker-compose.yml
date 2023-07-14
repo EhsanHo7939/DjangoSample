@@ -1,0 +1,55 @@
+version: "3.7"
+
+services:
+  
+  nginx:
+    build: './nginx'
+    container_name: 'nginx'
+    restart: 'always'
+    volumes:
+      - type: 'bind'
+        source: './volumes/media'
+        target: '/home/src/media'
+
+      - type: 'bind'
+        source: './volumes/static'
+        target: '/home/src/static'
+    ports:
+      - '80:80'
+    depends_on:
+      - 'app'
+
+
+  app:
+    build: './volumes/app'
+    container_name: 'app'
+    restart: 'always'
+    expose:
+      - 8000
+    volumes:
+      - type: 'bind'
+        source: './volumes/app/src'
+        target: '/home/src/app'
+    environment:
+      - "POSTGRES_DB=django_app"
+      - "POSTGRES_USER=django_user"
+      - "POSTGRES_PASSWORD=1234"
+      - "POSTGRES_HOST=db"
+    depends_on:
+      - 'db'
+
+
+  db:
+    image: 'postgres:latest'
+    container_name: 'psql'
+    restart: 'always'
+    expose:
+      - 5432
+    volumes:
+      - type: 'bind'
+        source: './volumes/dbdata'
+        target: '/var/lib/postgresql'
+    environment:
+      - "POSTGRES_DB=django_app"
+      - "POSTGRES_USER=django_user"
+      - "POSTGRES_PASSWORD=1234"
