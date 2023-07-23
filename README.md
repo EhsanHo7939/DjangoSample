@@ -1,2 +1,2 @@
-# DjangoBlogSample
-My First Blog by Django for Learning and Fun. :)
+# DjangoSample
+Django Sample for Fun. :)
