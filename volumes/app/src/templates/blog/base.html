@@ -28,6 +28,12 @@
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container">
                 <a class="navbar-brand" href="{% url 'blog:home' %}">Cactus &#127797;</a>
+                <div>
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0 list-group-horizontal">
+                        <li class="nav-item border border-white rounded text-center me-2 ps-1 pe-1"><a target="_blank" class="nav-link" href="{% url 'login' %}">Log In</a></li>
+                        <li class="nav-item"><a target="_blank" class="nav-link text-center text-white" href="{% url 'signup' %}">Sign Up</a></li>
+                    </ul>
+                </div>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
