@@ -10,7 +10,7 @@ from .views import (
 
 app_name = "blog"
 urlpatterns = [
-    path('', home, name="home"),
+    path('', home, name="home-root"),
     path('home/', home, name="home"),
     path('home/page/<int:page>/', home, name="home"),
     path('article/<slug:slug>/', articleDetails, name="articleDetails"),

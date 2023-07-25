@@ -19,7 +19,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # User Login
 LOGIN_REDIRECT_URL = "account:userHome"
-LOGOUT_REDIRECT_URL = "login"
+LOGOUT_REDIRECT_URL = "blog:home-root"
 LOGIN_URL = "login"
 
 # First superuser for login
