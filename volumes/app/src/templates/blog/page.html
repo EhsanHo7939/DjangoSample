@@ -47,7 +47,13 @@
                     <div class="small pb-3" style="font-size:13px">
                         {% ratings article  %}
                     </div>
-                    <p class="small text-muted mb-0">Written by: <a style="text-decoration: none;" href="{% url 'blog:authorPage' article.author %}">{{article.author.get_full_name}}</a></p>
+                    <p class="small text-muted mb-0">Written by:
+                        {% if article.author.get_full_name %}
+                            <a style="text-decoration: none;" href="{% url 'blog:authorPage' article.author %}">{{article.author.get_full_name}}</a>
+                        {% else %}
+                            <a style="text-decoration: none;" href="{% url 'blog:authorPage' article.author %}">{{article.author.username}}</a>
+                        {% endif %}
+                    </p>
                     <small class="text-primary">Views: {{article.hits.count}}</small>
                     <!-- Post categories-->
                     <div class="mb-1 mt-2">
