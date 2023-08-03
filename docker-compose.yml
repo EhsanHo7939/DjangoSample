@@ -6,6 +6,8 @@ services:
     build: './nginx'
     container_name: 'nginx'
     restart: 'always'
+    volumes_from:
+        - 'app'
     volumes:
       - type: 'bind'
         source: './volumes/media'
