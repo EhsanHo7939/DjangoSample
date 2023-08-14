@@ -10,7 +10,11 @@
         <meta name="author" content="" />
         <title>{% block title %}{% endblock %}</title>
         <!-- Favicon-->
-        <link rel="icon" type="static/image/x-icon" href="{% static '/blog/assets/favicon.ico' %}" />
+        {% comment %} <link rel="icon" type="static/image/x-icon" href="{% static '/blog/assets/favicon.ico' %}" /> {% endcomment %}
+        <link rel="apple-touch-icon" sizes="180x180" href="{% static '/favicon/apple-touch-icon.png' %}">
+        <link rel="icon" type="image/png" sizes="32x32" href="{% static '/favicon/favicon-32x32.png' %}">
+        <link rel="icon" type="image/png" sizes="16x16" href="{% static '/favicon/favicon-16x16.png' %}">
+        <link rel="manifest" href="{% static '/favicon/site.webmanifest' %}">
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="{% static '/blog/css/styles.css' %}" rel="stylesheet" />
         <link rel="stylesheet" href="{% static 'star-ratings/css/star-ratings.css' %}">
@@ -48,8 +52,8 @@
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                         <li class="nav-item"><a class="nav-link" href="{% url 'blog:home' %}">Home</a></li>
                         <li class="nav-item"><a class="nav-link" href="#!">About</a></li>
-                        <li class="nav-item"><a target="_blank" class="nav-link" href="https://EhsanHo.Dev/">Contact</a></li>
-                        <li class="nav-item"><a target="_blank" class="nav-link" href="https://github.com/EhsanHoDev/DjangoSample/">Source</a></li>
+                        <li class="nav-item"><a target="_blank" class="nav-link" href="https://EhsanHo.dev">Contact</a></li>
+                        <li class="nav-item"><a target="_blank" class="nav-link" href="https://github.com/EhsanHoDev/DjangoSample">Source</a></li>
                         {% comment %} <li class="nav-item"><a class="nav-link active" aria-current="page" href="#">Blog</a></li> {% endcomment %}
                     </ul>
                 </div>
@@ -84,8 +88,8 @@
         <!-- Footer-->
         <footer class="py-5 bg-dark">
             <div class="container">
-                <p class="m-0 text-center"><span class="text-white">GitHub: </span><a style="text-decoration:none" target="_blank" href="https://github.com/EhsanHoDev/DjangoSample/">This project is open source. Click on me!</a></p>
-                <p class="m-0 text-center"><span class="text-white">By: </span><a style="text-decoration:none" target="_blank" href="https://EhsanHo.Dev/"><b>Ehsan Ho</b></a></p>
+                <p class="m-0 text-center"><span class="text-white">GitHub: </span><a style="text-decoration:none" target="_blank" href="https://github.com/EhsanHoDev/DjangoSample">This project is open source. Click on me!</a></p>
+                <p class="m-0 text-center"><span class="text-white">By: </span><a style="text-decoration:none" target="_blank" href="https://EhsanHo.dev"><b>Ehsan Ho</b></a></p>
             </div>
         </footer>
         <!-- Bootstrap core JS-->
